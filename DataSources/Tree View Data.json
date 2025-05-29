@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "htf_treeviewdatas",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "htf_treeviewdata",
+    "MaxGetRowsCount": 500,
+    "Name": "Tree View Data",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "htf_id": "ID",
+      "htf_itemid": "ItemID",
+      "htf_level": "Level",
+      "htf_name": "Name",
+      "htf_parentid": "Parent ID",
+      "htf_treeviewdata_AsyncOperations": "System Jobs",
+      "htf_treeviewdata_BulkDeleteFailures": "Bulk Delete Failures",
+      "htf_treeviewdata_DuplicateBaseRecord": "Duplicate Records (htf_treeviewdata_DuplicateBaseRecord)",
+      "htf_treeviewdata_DuplicateMatchingRecord": "Duplicate Records (htf_treeviewdata_DuplicateMatchingRecord)",
+      "htf_treeviewdata_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "htf_treeviewdata_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "htf_treeviewdata_ProcessSession": "Process Sessions",
+      "htf_treeviewdata_SyncErrors": "Sync Errors",
+      "htf_treeviewdataid": "Tree View Data",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Tree View Data",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Tree View Data (Views)",
+    "Name": "_htf_treeviewdata_views",
+    "RelatedEntityName": "Tree View Data",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0e0520ee-60d0-478c-9422-2f52c669bac1": "Tree View Data Lookup View",
+      "29d96965-7430-41d3-ad46-5d4e655dc703": "Tree View Data Associated View",
+      "7d098016-cb73-4815-8db8-0edc0b0f3c65": "Tree View Data Advanced Find View",
+      "9844a36e-9187-4463-a35e-43830ee8efa6": "Inactive Tree View Data",
+      "b822258a-b934-485f-9264-90dba33b5b6f": "Active Tree View Data"
+    }
+  },
+  {
+    "DisplayName": "Status (Tree View Data)",
+    "Name": "htf_treeviewdata_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Tree View Data"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Tree View Data",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Tree View Data)",
+    "Name": "htf_treeviewdata_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Tree View Data"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Tree View Data",
+    "Type": "OptionSetInfo"
+  }
+]

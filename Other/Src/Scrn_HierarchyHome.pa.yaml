@@ -1,0 +1,207 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps is in preview. The schema is being actively developed.
+# Content may be incomplete and subject to change.
+# This file is read-only and should only be used to review changes made within Power Apps Studio.
+# This file isn't used when loading the app. External editing, merging and conflict resolution are
+# not supported.
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Scrn_HierarchyHome:
+    Properties:
+      Fill: =RGBA(230, 230, 230, 0.6)
+      LoadingSpinnerColor: =RGBA(135, 100, 184, 1)
+    Children:
+      - gal_HierachyView:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Flexible_SocialFeed_ver5.0
+          Properties:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =554
+            Items: |-
+              =Sort(
+                  colTreeData,
+                  ItemID,
+                  SortOrder.Ascending
+              )
+            TemplateSize: =114
+            Transition: =Transition.Pop
+            Width: =1067
+            X: =142
+            Y: =122
+          Children:
+            - lbl_hrcry_text:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(51, 51, 51, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Semibold
+                  OnSelect: =Select(Parent)
+                  Size: =15
+                  Text: =ThisItem.Name
+                  Width: =940
+                  X: =icn_hrcry_Action.Width + icn_hrcry_Action.X
+                  Y: =4
+            - icn_hrcry_Action:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Color: =RGBA(135, 100, 184, 1)
+                  DisabledColor: =RGBA(220, 220, 220, 1)
+                  DisabledFill: =RGBA(0, 0, 0, 0)
+                  FocusedBorderThickness: =4
+                  Height: =40
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =ColorFade(RGBA(135, 100, 184, 1), -30%)
+                  HoverFill: =RGBA(0, 0, 0, 0)
+                  Icon: |-
+                    =If(
+                        !LookUp(
+                            'Tree View Data',
+                            'Parent ID' = ThisItem.ItemID,
+                            true
+                        ),
+                        Icon.View,
+                        If(
+                            ThisItem.ItemID in colTreeData.'Parent ID',
+                            Icon.ChevronDown,
+                            Icon.ChevronRight
+                        )
+                    )
+                  OnSelect: |
+                    =If(
+                        Self.Icon = Icon.View,
+                        //Insert On View code here
+                        false,
+                        If(
+                            Self.Icon = Icon.ChevronDown,
+                            Remove(
+                                colTreeData,
+                                Filter(
+                                    colTreeData,
+                                    And(Level > ThisItem.Level)
+                                )
+                            ),
+                            If(
+                                Self.Icon = Icon.ChevronRight,
+                                Collect(
+                                    colTreeData,
+                                    Filter(
+                                        'Tree View Data',
+                                        'Parent ID' = ThisItem.ItemID
+                                    )
+                                ),
+                                Notify("Empty")
+                            )
+                        )
+                    );
+                  PaddingBottom: =9
+                  PaddingLeft: =9
+                  PaddingRight: =9
+                  PaddingTop: =9
+                  PressedBorderColor: =RGBA(0, 0, 0, 0)
+                  PressedColor: =ColorFade(RGBA(135, 100, 184, 1), -30%)
+                  PressedFill: =RGBA(0, 0, 0, 0)
+                  Width: =40
+                  X: =ThisItem.Level * 30
+      - icn_Reset:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(135, 100, 184, 1)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(135, 100, 184, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Reset
+            OnSelect: |-
+              =ClearCollect(
+                  colTreeData,
+                  Filter(
+                      'Tree View Data',
+                      Level = 1
+                  )
+              )
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(135, 100, 184, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =40
+            X: =1166
+            Y: =74
+      - lbl_Hearder:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =62
+            Size: =16
+            Text: ="Hierarchy Tree View Demo"
+            Width: =1366
+      - lbl_footer:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =42
+            Italic: =true
+            PaddingRight: =20
+            Size: =8
+            Text: ="(HTF)"
+            Width: =1366
+            Y: =726
+      - btn_TableStructure:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(39, 113, 194, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            Height: =45
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(135, 100, 184, 1), -10%)
+            OnSelect: =Navigate(Scrn_Hierarchy_TableStructure)
+            PressedBorderColor: =ColorFade(RGBA(135, 100, 184, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(135, 100, 184, 1), -30%)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Show Table Structure"
+            Width: =222
+            X: =1144
+            Y: =681
